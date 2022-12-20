@@ -1,4 +1,8 @@
 
+import {FiSearch} from 'react-icons/fi';
+import './styles.css';
+
+
 function App() {
   return (
     <div className="container">
@@ -8,9 +12,20 @@ function App() {
         <input type="text" placeholder="Type your zip code"/>
         
         <button className="buttonSearch">
-          Search for
+          <FiSearch size={25} color="#FFF"/>
         </button>
       </div>
+      
+      <main className='main'>
+        <h2> Zip Code: 508410440</h2>
+
+        <span> Rua Teste</span>
+        <span> Complemento: Algum</span>
+        <span> Catolé</span>
+        <span> Campina Grande - PB</span>
+
+      </main>
+      
     </div>
   );
 }
