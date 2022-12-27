@@ -1,7 +1,19 @@
 
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {FiSearch} from 'react-icons/fi';
 import './styles.css';
+
+
+const parseCSV = (text) => {
+  const result = {
+    header: [],
+    data: [],
+  }
+  const [header, ...content] = text.split('\n');
+
+  result.header = header.split('  ');
+  console.log(result);
+}
 
 
 function App() {
@@ -9,8 +21,17 @@ function App() {
   const[input, setInput] = useState('')
 
   function handleSearch(){
-    alert("Valor do input " + input)
-  }
+   
+  };
+
+  useEffect(() => {
+    fetch('/zipcodes_brazil.csv')
+      .then((r) => r.text())
+      .then((text) => {
+        parseCSV(text);
+      });
+  }, []);
+
 
   return (
     <div className="container">
@@ -31,10 +52,10 @@ function App() {
       <main className='main'>
         <h2> Zip Code: 508410440</h2>
 
+        <span> UF</span>
+        <span> Cidade</span>
+        <span> Bairro</span>
         <span> Rua Teste</span>
-        <span> Complemento: Algum</span>
-        <span> Catolé</span>
-        <span> Campina Grande - PB</span>
 
       </main>
       
