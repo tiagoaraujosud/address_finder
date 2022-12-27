@@ -24,7 +24,7 @@ function App() {
 
   const[input, setInput] = useState('')
   const [csv, setCsv] = useState('null')
-  const [adress, setAdress] = useState('')
+  const [address, setAddress] = useState('')
 
   useEffect(() => {
     fetch('/cep-20190602.csv')
@@ -40,10 +40,10 @@ function App() {
 
     for (let i = 0; i < csv.data.length; i++) {
       let element = csv.data[i][3];
-      setAdress('');
+      setAddress('');
       if (element === input) {
         element = csv.data[i];
-        setAdress(element);
+        setAddress(element);
         break;
       }
     }
@@ -68,10 +68,10 @@ function App() {
       <main className='main'>
         <h2> Zip Code: {input}</h2>
 
-        <span> UF: {adress[0]}</span>
-        <span> City: {adress[1]}</span>
-        <span> District: {adress[2]}</span>
-        <span> Street: {adress[4]}</span>
+        <span> State: {address[0]}</span>
+        <span> City: {address[1]}</span>
+        <span> District: {address[2]}</span>
+        <span> Street: {address[4]}</span>
 
       </main>
       
