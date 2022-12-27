@@ -16,26 +16,38 @@ const parseCSV = (text) => {
   content.forEach((item) => {
     result.data.push(item.split(';'))
   });
-  console.log(result);
+  return result;
 }
 
 
 function App() {
 
   const[input, setInput] = useState('')
-
-  function handleSearch(){
-   
-  };
+  const [csv, setCsv] = useState('null')
+  const [adress, setAdress] = useState('null')
 
   useEffect(() => {
     fetch('/cep-20190602.csv')
       .then((r) => r.text())
       .then((text) => {
-        parseCSV(text);
+        setCsv(parseCSV(text));
       });
   }, []);
 
+  function handleSearch(){    
+    
+    for (let i = 0; i < csv.data.length; i++) {
+      let element = csv.data[i][3];
+      if (element === input) {
+        element = csv.data[i];
+        setAdress(element);
+        return element;
+      }else{
+        console.log('Error')
+        break;
+      }
+    }
+  };
 
   return (
     <div className="container">
