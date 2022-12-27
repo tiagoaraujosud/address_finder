@@ -24,7 +24,7 @@ function App() {
 
   const[input, setInput] = useState('')
   const [csv, setCsv] = useState('null')
-  const [adress, setAdress] = useState('null')
+  const [adress, setAdress] = useState('')
 
   useEffect(() => {
     fetch('/cep-20190602.csv')
@@ -36,14 +36,14 @@ function App() {
 
   function handleSearch(){    
     
+    
+
     for (let i = 0; i < csv.data.length; i++) {
       let element = csv.data[i][3];
+      setAdress('');
       if (element === input) {
         element = csv.data[i];
         setAdress(element);
-        return element;
-      }else{
-        console.log('Error')
         break;
       }
     }
@@ -66,12 +66,12 @@ function App() {
       </div>
       
       <main className='main'>
-        <h2> Zip Code: 508410440</h2>
+        <h2> Zip Code: {input}</h2>
 
-        <span> UF</span>
-        <span> Cidade</span>
-        <span> Bairro</span>
-        <span> Rua Teste</span>
+        <span> UF: {adress[0]}</span>
+        <span> City: {adress[1]}</span>
+        <span> District: {adress[2]}</span>
+        <span> Street: {adress[4]}</span>
 
       </main>
       
