@@ -11,7 +11,11 @@ const parseCSV = (text) => {
   }
   const [header, ...content] = text.split('\n');
 
-  result.header = header.split('  ');
+  result.header = header.split(';');
+
+  content.forEach((item) => {
+    result.data.push(item.split(';'))
+  });
   console.log(result);
 }
 
@@ -25,7 +29,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch('/zipcodes_brazil.csv')
+    fetch('/cep-20190602.csv')
       .then((r) => r.text())
       .then((text) => {
         parseCSV(text);
